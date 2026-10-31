@@ -1,0 +1,241 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NEBULA | Gaming & Entertainment</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  background:#080a12;color:white;
+  font-family:Arial,sans-serif;min-height:100vh;
+}
+header{
+  padding:24px 7%;display:flex;align-items:center;
+  justify-content:space-between;flex-wrap:wrap;gap:15px;
+  background:#101321;border-bottom:1px solid #252943;
+}
+.logo{font-size:28px;font-weight:900;color:#9d78ff;letter-spacing:3px}
+nav{display:flex;gap:18px;flex-wrap:wrap}
+nav a{color:#ddd;text-decoration:none;font-size:14px}
+nav a:hover{color:#a58aff}
+.hero{
+  padding:65px 7% 45px;
+  background:radial-gradient(ellipse at top,#33215d,#111323 55%,#080a12);
+}
+.hero h1{font-size:clamp(38px,7vw,68px);margin-bottom:15px}
+.hero h1 span{color:#a58aff}
+.hero p{color:#b7b8ca;margin-bottom:25px}
+.search{
+  width:100%;max-width:550px;padding:16px 20px;
+  border:1px solid #514477;border-radius:12px;
+  background:#171a2b;color:white;font-size:16px;outline:none;
+}
+.search:focus{border-color:#a58aff}
+.section{padding:35px 7%}
+.section h2{font-size:25px;margin-bottom:20px}
+.filters{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:22px}
+.filter{
+  border:1px solid #343751;background:#171a2b;
+  color:white;padding:9px 16px;border-radius:20px;cursor:pointer;
+}
+.filter.active,.filter:hover{background:#7650d9;border-color:#7650d9}
+.games{
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(155px,1fr));
+  gap:15px;
+}
+.game{
+  background:#151827;border:1px solid #292e47;
+  border-radius:13px;padding:18px 12px;
+  text-decoration:none;color:white;transition:.2s;
+  min-height:125px;display:flex;flex-direction:column;
+  justify-content:space-between;
+}
+.game:hover{
+  transform:translateY(-5px);
+  border-color:#9d78ff;
+  background:#222039;
+}
+.game .emoji{font-size:30px;margin-bottom:12px}
+.game strong{font-size:14px}
+.game small{color:#999db7;margin-top:8px}
+.entertainment{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
+  gap:18px;
+}
+.ent-card{
+  padding:27px;border-radius:15px;text-decoration:none;
+  color:white;min-height:145px;transition:.2s;
+}
+.ent-card:hover{transform:scale(1.025)}
+.ent-card h3{font-size:23px;margin:12px 0 7px}
+.ent-card p{font-size:13px;opacity:.8}
+.youtube{background:linear-gradient(135deg,#e52d27,#7d1010)}
+.netflix{background:linear-gradient(135deg,#b20710,#390508)}
+.spotify{background:linear-gradient(135deg,#1db954,#07552a)}
+.discord{background:linear-gradient(135deg,#5865f2,#252b7b)}
+.extra{background:linear-gradient(135deg,#5941a9,#21183f)}
+footer{
+  padding:35px;text-align:center;color:#777b95;
+  border-top:1px solid #252943;margin-top:30px;
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">✦ NEBULA</div>
+  <nav>
+    <a href="#games">Games</a>
+    <a href="#entertainment">Entertainment</a>
+    <a href="#extras">Extras</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <h1>WELCOME TO <span>NEBULA.</span></h1>
+  <p>Your universe of games, entertainment and everything cool.</p>
+  <input class="search" id="search" placeholder="🔍 Search 50+ games..." oninput="renderGames()">
+</section>
+
+<section class="section" id="games">
+  <h2>🎮 Game Universe</h2>
+  <div class="filters" id="filters">
+    <button class="filter active" onclick="setCategory('All',this)">All</button>
+    <button class="filter" onclick="setCategory('Action',this)">Action</button>
+    <button class="filter" onclick="setCategory('Racing',this)">Racing</button>
+    <button class="filter" onclick="setCategory('Puzzle',this)">Puzzle</button>
+    <button class="filter" onclick="setCategory('Arcade',this)">Arcade</button>
+    <button class="filter" onclick="setCategory('Sports',this)">Sports</button>
+    <button class="filter" onclick="setCategory('Multiplayer',this)">Multiplayer</button>
+  </div>
+  <div class="games" id="gamesList"></div>
+</section>
+
+<section class="section" id="entertainment">
+  <h2>🍿 Entertainment Zone</h2>
+  <div class="entertainment">
+    <a class="ent-card youtube" href="https://www.youtube.com/" target="_blank">
+      <div style="font-size:30px">▶️</div>
+      <h3>YouTube</h3><p>Videos, music, creators and more.</p>
+    </a>
+    <a class="ent-card netflix" href="https://www.netflix.com/" target="_blank">
+      <div style="font-size:30px">🎬</div>
+      <h3>NETFLIX</h3><p>Movies, series and entertainment.</p>
+    </a>
+    <a class="ent-card spotify" href="https://open.spotify.com/" target="_blank">
+      <div style="font-size:30px">🎵</div>
+      <h3>Spotify</h3><p>Listen to your favorite music.</p>
+    </a>
+    <a class="ent-card discord" href="https://discord.com/app" target="_blank">
+      <div style="font-size:30px">💬</div>
+      <h3>Discord</h3><p>Chat and hang out with friends.</p>
+    </a>
+  </div>
+</section>
+
+<section class="section" id="extras">
+  <h2>✨ More Cool Stuff</h2>
+  <div class="entertainment">
+    <a class="ent-card extra" href="https://www.reddit.com/" target="_blank">
+      <div>👾</div><h3>Reddit</h3><p>Explore communities.</p>
+    </a>
+    <a class="ent-card extra" href="https://itch.io/games" target="_blank">
+      <div>🕹️</div><h3>Itch.io</h3><p>Discover indie games.</p>
+    </a>
+    <a class="ent-card extra" href="https://www.coolmathgames.com/" target="_blank">
+      <div>🧠</div><h3>Cool Math Games</h3><p>Play brain games.</p>
+    </a>
+    <a class="ent-card extra" href="https://www.twitch.tv/" target="_blank">
+      <div>📺</div><h3>Twitch</h3><p>Watch live streams.</p>
+    </a>
+    <a class="ent-card extra" href="https://www.photopea.com/" target="_blank">
+      <div>🎨</div><h3>Photopea</h3><p>Edit pictures online.</p>
+    </a>
+    <a class="ent-card extra" href="https://www.chess.com/" target="_blank">
+      <div>♟️</div><h3>Chess</h3><p>Challenge your brain.</p>
+    </a>
+  </div>
+</section>
+
+<footer>
+  ✦ NEBULA — YOUR UNIVERSE, YOUR RULES ✦
+  <p style="margin-top:10px">Made for fun. 2026</p>
+</footer>
+
+<script>
+const games = [
+["2048","🧩","Puzzle"],["Slither.io","🐍","Multiplayer"],
+["Agar.io","🔵","Multiplayer"],["Krunker","🔫","Action"],
+["Shell Shockers","🥚","Action"],["Moto X3M","🏍️","Racing"],
+["Drift Hunters","🚗","Racing"],["Basketball Stars","🏀","Sports"],
+["Soccer Skills","⚽","Sports"],["Basketball Legends","🏆","Sports"],
+["Geometry Dash","🔷","Arcade"],["Pac-Man","🟡","Arcade"],
+["Tetris","🧱","Puzzle"],["Minesweeper","💣","Puzzle"],
+["Sudoku","🔢","Puzzle"],["Chess","♟️","Puzzle"],
+["Checkers","🔴","Puzzle"],["Wordle","🔤","Puzzle"],
+["Crossy Road","🐔","Arcade"],["Subway Surfers","🚇","Arcade"],
+["Temple Run","🏃","Arcade"],["Flappy Bird","🐤","Arcade"],
+["Cookie Clicker","🍪","Arcade"],["Idle Breakout","🧱","Arcade"],
+["Bloons TD","🎈","Strategy"],["Plants vs Zombies","🌻","Strategy"],
+["Stickman Hook","🪝","Action"],["Ragdoll Archers","🏹","Action"],
+["Getaway Shootout","🚙","Action"],["Among Us","🚀","Multiplayer"],
+["Minecraft","⛏️","Adventure"],["Terraria","🌳","Adventure"],
+["Little Alchemy 2","⚗️","Puzzle"],["Fireboy and Watergirl","🔥","Puzzle"],
+["Run 3","🏃","Arcade"],["Slope","⚽","Arcade"],
+["Tunnel Rush","🌀","Arcade"],["Stack","🗼","Arcade"],
+["Helix Jump","🟣","Arcade"],["Color Switch","🌈","Arcade"],
+["Doodle Jump","👽","Arcade"],["Fruit Ninja","🍉","Arcade"],
+["Cut the Rope","🐸","Puzzle"],["Angry Birds","🐦","Puzzle"],
+["Mahjong","🀄","Puzzle"],["Bubble Shooter","🫧","Puzzle"],
+["Solitaire","🃏","Puzzle"],["Penalty Shooters","🥅","Sports"],
+["8 Ball Pool","🎱","Sports"],["Drive Mad","🚘","Racing"],
+["Madalin Stunt Cars","🏎️","Racing"],["Car Simulator","🚗","Racing"],
+["Kart Racing","🏁","Racing"],["Tank Trouble","💥","Action"],
+["Zombs Royale","🧟","Multiplayer"],["Paper.io","📄","Multiplayer"],
+["Chess Online","♟️","Multiplayer"],["Checkers Online","🔴","Multiplayer"],
+["Word Search","🔎","Puzzle"],["Coloring Games","🖍️","Puzzle"]
+];
+
+let category = "All";
+
+function renderGames(){
+ const search = document.getElementById("search").value.toLowerCase();
+ const list = document.getElementById("gamesList");
+ const filtered = games.filter(g =>
+   (category === "All" || g[2] === category) &&
+   g[0].toLowerCase().includes(search)
+ );
+ list.innerHTML = "";
+ filtered.forEach(g => {
+   const card = document.createElement("a");
+   card.className = "game";
+   card.href = "https://www.google.com/search?q=" +
+     encodeURIComponent(g[0] + " play online");
+   card.target = "_blank";
+   card.rel = "noopener noreferrer";
+   const emoji = document.createElement("div");
+   emoji.className = "emoji";
+   emoji.textContent = g[1];
+   const name = document.createElement("strong");
+   name.textContent = g[0];
+   const type = document.createElement("small");
+   type.textContent = g[2];
+   card.append(emoji,name,type);
+   list.appendChild(card);
+ });
+ if(!filtered.length) list.textContent = "No games found!";
+}
+
+function setCategory(cat,button){
+ category = cat;
+ document.querySelectorAll(".filter").forEach(b=>b.classList.remove("active"));
+ button.classList.add("active");
+ renderGames();
+}
+
+renderGames();
+</script>
+</body>
+</html>
